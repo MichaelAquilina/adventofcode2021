@@ -1,4 +1,4 @@
-Advent of Code 2020 Solutions
+Advent of Code 2021 Solutions
 -----------------------------
 
 |CircleCI|
