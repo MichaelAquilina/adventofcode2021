@@ -14,3 +14,6 @@ To run a solution, head to the project for the particular day and run:
 .. code-block:: shell
 
    cargo run < input.txt
+
+.. |CircleCI| image:: https://circleci.com/gh/MichaelAquilina/adventofcode2020.svg?style=svg
+   :target: https://circleci.com/gh/MichaelAquilina/adventofcode2021

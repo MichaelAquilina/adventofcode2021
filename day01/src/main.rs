@@ -33,5 +33,5 @@ fn get_number_of_increases(values: &[u32], window_size: usize) -> u32 {
         }
         previous = Some(value);
     }
-    return count;
+    count
 }

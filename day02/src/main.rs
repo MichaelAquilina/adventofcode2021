@@ -39,7 +39,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 fn read_commands(content: &str) -> Result<Vec<Command>, Box<dyn Error>> {
     let mut commands = vec![];
     for line in content.lines() {
-        let mut tokens = line.split(" ");
+        let mut tokens = line.split(' ');
         let command_type = tokens.next().ok_or("Missing command type")?;
         let value: u32 = tokens.next().ok_or("Missing command value")?.parse()?;
 

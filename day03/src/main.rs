@@ -58,7 +58,7 @@ fn calculate_power_consumption(
 
     let half = (values.len() / 2) as u32;
     for index in 0..length {
-        let counter = calculate_frequency(&values, index)?;
+        let counter = calculate_frequency(values, index)?;
 
         if counter > half {
             gamma.push('1');
