@@ -1,0 +1,43 @@
+use thiserror::Error;
+
+#[derive(Debug, PartialEq)]
+struct Point {
+    x: u32,
+    y: u32,
+}
+
+struct Vector {
+    point_1: Point,
+    point_2: Point,
+}
+
+#[derive(Debug, Error)]
+enum VectorParseError {
+    #[error("Missing {0}")]
+    MissingValue(String),
+    #[error("Invalid integer coordinate")]
+    InvalidInt(#[from] std::num::ParseIntError),
+}
+
+impl std::str::FromStr for Vector {
+    type Err = VectorParseError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        let mut tokens = value.split(" -> ");
+        let point_1 = tokens.next().ok_or(VectorParseError::MissingValue("point_1".to_string()))?.parse()?;
+        let point_2 = tokens.next().ok_or(VectorParseError::MissingValue("point_2".to_string()))?.parse()?;
+        Ok(Vector { point_1, point_2 })
+    }
+}
+
+impl std::str::FromStr for Point {
+    type Err = VectorParseError;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        let mut tokens = value.split(",");
+        let x = tokens.next().ok_or(VectorParseError::MissingValue("x".to_string()))?.parse()?;
+        let y = tokens.next().ok_or(VectorParseError::MissingValue("y".to_string()))?.parse()?;
+
+        Ok(Point { x, y })
+    }
+}
