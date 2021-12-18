@@ -1,4 +1,3 @@
-use cached::proc_macro::cached;
 use itertools::sorted;
 use std::error::Error;
 use std::io::Read;
@@ -48,15 +47,10 @@ fn calculate_total_real_fuel_cost(crabs: &[i32], value: i32) -> u32 {
     cost
 }
 
-#[cached]
 fn real_fuel_cost(distance: u32) -> u32 {
-    let mut cost = 0;
-    let mut index = 1;
-    while index <= distance {
-        cost += index;
-        index += 1;
-    }
-    cost
+    // arithmetic progression
+    let n = distance;
+    (n * (n + 1)) / 2
 }
 
 fn median(values: &[i32]) -> i32 {
